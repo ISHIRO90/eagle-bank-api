@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.eaglebank.api.service.UserServiceTest" tests="11" skipped="0" failures="0" errors="0" timestamp="2025-07-07T00:15:23" hostname="Mac.lan" time="0.021">
+  <properties/>
+  <testcase name="deleteUser_HasAccounts_ThrowsException()" classname="com.eaglebank.api.service.UserServiceTest" time="0.002"/>
+  <testcase name="createUser_EmailAlreadyExists_ThrowsException()" classname="com.eaglebank.api.service.UserServiceTest" time="0.001"/>
+  <testcase name="getUserById_UserNotFound_ThrowsException()" classname="com.eaglebank.api.service.UserServiceTest" time="0.002"/>
+  <testcase name="createUser_Success()" classname="com.eaglebank.api.service.UserServiceTest" time="0.003"/>
+  <testcase name="getUserById_Success()" classname="com.eaglebank.api.service.UserServiceTest" time="0.001"/>
+  <testcase name="getUserById_UnauthorizedAccess_ThrowsException()" classname="com.eaglebank.api.service.UserServiceTest" time="0.002"/>
+  <testcase name="deleteUser_Success()" classname="com.eaglebank.api.service.UserServiceTest" time="0.002"/>
+  <testcase name="updateUser_Success()" classname="com.eaglebank.api.service.UserServiceTest" time="0.002"/>
+  <testcase name="findByEmail_NotFound()" classname="com.eaglebank.api.service.UserServiceTest" time="0.001"/>
+  <testcase name="updateUser_EmailTakenByAnotherUser_ThrowsException()" classname="com.eaglebank.api.service.UserServiceTest" time="0.001"/>
+  <testcase name="findByEmail_Success()" classname="com.eaglebank.api.service.UserServiceTest" time="0.002"/>
+  <system-out><![CDATA[2025-07-07T01:15:23.629+01:00  INFO 42577 --- [eagle-bank-api-test] [    Test worker] com.eaglebank.api.service.UserService    : Created user with ID: usr-12345678
+2025-07-07T01:15:23.634+01:00  INFO 42577 --- [eagle-bank-api-test] [    Test worker] com.eaglebank.api.service.UserService    : Deleted user with ID: usr-12345678
+2025-07-07T01:15:23.636+01:00  INFO 42577 --- [eagle-bank-api-test] [    Test worker] com.eaglebank.api.service.UserService    : Updated user with ID: usr-12345678
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

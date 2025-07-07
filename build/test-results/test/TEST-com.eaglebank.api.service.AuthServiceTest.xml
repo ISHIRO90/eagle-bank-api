@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.eaglebank.api.service.AuthServiceTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2025-07-07T00:15:23" hostname="Mac.lan" time="0.162">
+  <properties/>
+  <testcase name="authenticate_UserNotFound_ThrowsException()" classname="com.eaglebank.api.service.AuthServiceTest" time="0.155"/>
+  <testcase name="authenticate_InvalidPassword_ThrowsException()" classname="com.eaglebank.api.service.AuthServiceTest" time="0.003"/>
+  <testcase name="authenticate_Success()" classname="com.eaglebank.api.service.AuthServiceTest" time="0.003"/>
+  <system-out><![CDATA[2025-07-07T01:15:23.618+01:00  INFO 42577 --- [eagle-bank-api-test] [    Test worker] com.eaglebank.api.service.AuthService    : Successfully authenticated user: usr-12345678
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

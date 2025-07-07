@@ -1,0 +1,95 @@
+plugins {
+    id 'org.springframework.boot' version '3.2.0'
+    id 'io.spring.dependency-management' version '1.1.4'
+    id 'java'
+    id 'org.openapi.generator' version '7.1.0'
+}
+
+group = 'com.eaglebank'
+version = '0.0.1-SNAPSHOT'
+
+java {
+    sourceCompatibility = '17'
+}
+
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-security'
+    implementation 'org.springframework.boot:spring-boot-starter-validation'
+    implementation 'org.springframework.boot:spring-boot-starter-actuator'
+    
+    // JWT
+    implementation 'io.jsonwebtoken:jjwt-api:0.12.3'
+    runtimeOnly 'io.jsonwebtoken:jjwt-impl:0.12.3'
+    runtimeOnly 'io.jsonwebtoken:jjwt-jackson:0.12.3'
+    
+    // OpenAPI/Swagger
+    implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.2.0'
+    implementation 'org.openapitools:jackson-databind-nullable:0.2.6'
+    
+    // Database
+    runtimeOnly 'com.h2database:h2'
+    
+    // Lombok
+    compileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
+    
+    // Testing
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation 'org.springframework.security:spring-security-test'
+    testImplementation 'org.mockito:mockito-core'
+    testImplementation 'org.mockito:mockito-junit-jupiter'
+}
+
+// OpenAPI Generator configuration
+openApiGenerate {
+    generatorName = "spring"
+    inputSpec = "$rootDir/src/main/resources/openapi.yaml"
+    outputDir = "$buildDir/generated"
+    apiPackage = "com.eaglebank.api.generated.api"
+    modelPackage = "com.eaglebank.api.generated.model"
+    configOptions = [
+        dateLibrary: "java8",
+        interfaceOnly: "true",
+        useTags: "true",
+        skipDefaultInterface: "true",
+        useJakartaEe: "true",
+        documentationProvider: "none"
+    ]
+}
+
+// Add generated sources to compilation
+sourceSets {
+    main {
+        java {
+            srcDirs += "$buildDir/generated/src/main/java"
+        }
+    }
+}
+
+// Ensure OpenAPI generation runs before compilation
+compileJava.dependsOn tasks.openApiGenerate
+
+tasks.named('test') {
+    useJUnitPlatform()
+    jvmArgs '--add-opens', 'java.base/java.lang=ALL-UNNAMED'
+    jvmArgs '--add-opens', 'java.base/java.util=ALL-UNNAMED'
+}
+
+// JVM options for better performance
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+    options.compilerArgs += ['-parameters']
+}
+
